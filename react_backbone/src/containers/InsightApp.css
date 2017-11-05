@@ -1,0 +1,50 @@
+@import '~antd/dist/antd.css';
+
+.App {
+  text-align: center;
+}
+
+#components-layout-demo-basic .code-box-demo {
+  text-align: center;
+}
+#components-layout-demo-basic .ant-layout-header,
+#components-layout-demo-basic .ant-layout-footer {
+  background: #fff;
+  color: #000;
+}
+#components-layout-demo-basic .ant-layout-footer {
+  line-height: 1.5;
+}
+#components-layout-demo-basic .ant-layout-sider {
+  background: rgb(250, 251, 252);
+  color: #fff;
+  width: 500px;
+  /* line-height: 120px; */
+}
+#components-layout-demo-basic .ant-layout-content {
+  background: rgb(250, 251, 252);
+  color: #fff;
+  /* min-height: 120px; */
+  /* line-height: 120px; */
+}
+#components-layout-demo-basic > .code-box-demo > div > .ant-layout {
+  margin-bottom: 48px;
+}
+#components-layout-demo-basic > .code-box-demo > div > .ant-layout:last-child {
+  margin: 0;
+}
+
+.nav__top {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  height: 60px;
+  position: relative;
+}
+.nav__padding {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.center {
+  display: flex;
+  align-items: center;
+}
