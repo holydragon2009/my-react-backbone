@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import "./InsightApp.css";
+import "./InsightApp.less";
 import { 
   Layout,
   Icon, 
