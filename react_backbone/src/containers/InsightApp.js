@@ -9,7 +9,7 @@ import {
 } from "antd";
 
 import AutoCompleteBox from "../components/ant/AutoCompleteBox";
-import AvlTool from "./AvlTool";
+import AvlTool from "../scenes/home/containers/AvlTool";
 import MsgTool from "./MsgTool";
 import ResultTab from "./ResultTab";
 import RedditNews from "./RedditNews";

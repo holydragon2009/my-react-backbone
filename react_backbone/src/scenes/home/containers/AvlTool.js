@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { Collapse } from "antd";
-import DateTimeFilter from "../components/ant/DateTimeFilter";
-import EventFilter from "../components/ant/EventFilter";
-import VehicleFilter from "../components/ant/VehicleFilter";
-import UnitFilter from "../components/ant/UnitFilter";
-import LocationFilter from "../components/ant/LocationFilter";
+import DateTimeFilter from "../../../components/ant/DateTimeFilter";
+import EventFilter from "../../../components/ant/EventFilter";
+import VehicleFilter from "../../../components/ant/VehicleFilter";
+import UnitFilter from "../../../components/ant/UnitFilter";
+import LocationFilter from "../../../components/ant/LocationFilter";
+import { connect } from "react-redux";
+import { updateToolFilter } from "../actions";
 
 const Panel = Collapse.Panel;
 
@@ -21,6 +23,8 @@ class AvlTool extends React.Component {
     locationCount: 0
   };
   updateEventCount = count => {
+    const { dispatch, filters } = this.props;
+    dispatch(updateToolFilter('eventCount = ' + count, 1));
     this.setState({
       eventCount: count
     });
@@ -71,5 +75,12 @@ class AvlTool extends React.Component {
   }
 }
 
-export default AvlTool;
+const mapStateToProps = state => {
+  const { filters } = state
+  return {
+    filters
+  }
+}
+
+export default connect(mapStateToProps)(AvlTool);
 

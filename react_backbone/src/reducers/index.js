@@ -6,7 +6,10 @@ import {
   RECEIVE_POSTS
 } from "../actions";
 
+import {filters} from '../scenes/home/reducers';
+
 const selectedReddit = (state = "reactjs", action) => {
+  // console.log("reducer selectedReddit state = " + JSON.stringify(state) + " - action = " + JSON.stringify(action));
   switch (action.type) {
     case SELECT_REDDIT:
       return action.reddit;
@@ -49,10 +52,12 @@ const posts = (
 };
 
 const postsByReddit = (state = {}, action) => {
+  
   switch (action.type) {
     case INVALIDATE_REDDIT:
     case RECEIVE_POSTS:
     case REQUEST_POSTS:
+    // console.log("reducer postsByReddit state = " + JSON.stringify(state[action.reddit]) + " - action = " + JSON.stringify(action));
       return {
         ...state,
         [action.reddit]: posts(state[action.reddit], action)
@@ -63,8 +68,7 @@ const postsByReddit = (state = {}, action) => {
 };
 
 const rootReducer = combineReducers({
-  postsByReddit,
-  selectedReddit
+  postsByReddit, selectedReddit, filters
 });
 
 export default rootReducer;
