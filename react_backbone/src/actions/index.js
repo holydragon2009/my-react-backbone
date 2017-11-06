@@ -1,7 +1,7 @@
-export const REQUEST_POSTS = "REQUEST_POSTS";
-export const RECEIVE_POSTS = "RECEIVE_POSTS";
-export const SELECT_REDDIT = "SELECT_REDDIT";
-export const INVALIDATE_REDDIT = "INVALIDATE_REDDIT";
+export const REQUEST_POSTS = 'REQUEST_POSTS';
+export const RECEIVE_POSTS = 'RECEIVE_POSTS';
+export const SELECT_REDDIT = 'SELECT_REDDIT';
+export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT';
 
 export const selectReddit = reddit => ({
   type: SELECT_REDDIT,
@@ -25,7 +25,7 @@ export const receivePosts = (reddit, json) => ({
   receivedAt: Date.now()
 });
 
-const fetchPosts = reddit => dispatch => {
+const fetchPosts = reddit => (dispatch) => {
   dispatch(requestPosts(reddit));
   return fetch(`https://www.reddit.com/r/${reddit}.json`)
     .then(response => response.json())
@@ -48,3 +48,4 @@ export const fetchPostsIfNeeded = reddit => (dispatch, getState) => {
     return dispatch(fetchPosts(reddit));
   }
 };
+
