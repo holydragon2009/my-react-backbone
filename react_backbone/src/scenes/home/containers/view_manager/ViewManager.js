@@ -17,22 +17,37 @@ class ViewManager extends Component {
         this.state = {
             listData: [
                 {
-                    id: 1,
+                    idView: 1,
                     name: 'Vechince',
                 },
                 {
-                    id: 2,
+                    idView: 2,
                     name: 'Vechince1',
                 },
                 {
-                    id: 3,
+                    idView: 3,
                     name: 'Vechince2',
                 },
             ],
             valueSearch: ''
         };
-    
     }
+    _handleClickItem =id=> {
+        console.log("List  id = " + id)
+    }
+
+    _handleClickAdd = id => {
+        console.log("Add  id = " + id)
+    }
+
+    _handleClickSave = id => {
+        console.log("Save  id = " + id)
+    }
+    _handleClickDelete = id => {
+        console.log("Delete  id = " + id)
+    }
+  
+    
     render() {
         console.log("quanle" + this.state.valueSearch);
         return (
@@ -42,28 +57,50 @@ class ViewManager extends Component {
                     style={{ width: 300 }}
                     onSearch={value => this.setState({ valueSearch: value })}
                 />
-                <SimpleList data={this.state.listData}/>
+                <SimpleList data={this.state.listData} handleCLick={this._handleClickItem} 
+                handleClickAdd={this._handleClickAdd}
+                handleClickSave={this._handleClickSave}
+                handleClickDelete={this._handleClickDelete}
+                />
             
             </div>
         )
     };
 }
 class SimpleList extends Component {
+
+ 
+    _itemClick = id => item => {
+        this.props.handleCLick(id);
+    }
+
+    _itemClickAdd = id => item => {
+        this.props.handleClickAdd(id);
+    }
+
+    _itemClickSave = id => item => {
+        this.props.handleClickSave(id);
+    }
+
+    _itemClickDelete= id => item => {
+        this.props.handleClickDelete(id);
+    }
+
       render() { 
           return (
               <div>
                   <List>
                       {this.props.data.map((item) => (
                           <ListItem button>
-                              <ListItemText primary={item.name} align="left" onClick={() => console.log("List" + item.id)}/>
+                              <ListItemText primary={item.name} align="left" onClick={this._itemClick(item.idView)} />
                               <ListItemIcon>
-                                  <DraftsIcon onClick={() => console.log("Edit" + item.id)} />
+                                  <DraftsIcon onClick={this._itemClickAdd(item.idView)} />
                               </ListItemIcon>
                               <ListItemIcon>
-                                  <DraftsIcon onClick={() => console.log("Add" + item.id)} />
+                                  <DraftsIcon onClick={this._itemClickSave(item.idView)} />
                               </ListItemIcon>
                               <ListItemIcon>
-                                  <DraftsIcon onClick={() => console.log("Save" + item.id)} />
+                                  <DraftsIcon onClick={this._itemClickDelete(item.idView)}  />
                               </ListItemIcon>
                           </ListItem>
                       ))};
