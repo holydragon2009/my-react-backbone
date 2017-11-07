@@ -5,6 +5,16 @@ const filterData = {
   events: [1,3,4,5],
   vehicles: [1,3,7,8,9],
   units: [1,3,5,7,9],
+  timeframes: [
+    {
+      from: 12348890,
+      to: 12349990
+    },
+    {
+      from: 11112222,
+      to: 11113333
+    }
+  ],
   locations: {
     points: [
       {
