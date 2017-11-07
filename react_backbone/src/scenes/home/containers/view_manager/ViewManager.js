@@ -8,75 +8,69 @@ import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import InboxIcon from 'material-ui-icons/Inbox';
 import DraftsIcon from 'material-ui-icons/Drafts';
+import Avatar from 'material-ui/Avatar';
 
 const Search = Input.Search;
-
 class ViewManager extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            listData: [
+                {
+                    id: 1,
+                    name: 'Vechince',
+                },
+                {
+                    id: 2,
+                    name: 'Vechince1',
+                },
+                {
+                    id: 3,
+                    name: 'Vechince2',
+                },
+            ],
             valueSearch: ''
         };
+    
     }
     render() {
         console.log("quanle" + this.state.valueSearch);
         return (
             <div>
-                {/* <ListView></ListView> */}
-
                 <Search
                     placeholder="input search text"
-                    style={{ width: 200 }}
+                    style={{ width: 300 }}
                     onSearch={value => this.setState({ valueSearch: value })}
                 />
-                <SimpleList />
+                <SimpleList data={this.state.listData}/>
+            
             </div>
         )
-
     };
 }
-
-const styles = theme => ({
-    root: {
-      width: '100%',
-      maxWidth: 360,
-      background: theme.palette.background.paper,
-    },
-  });
+class SimpleList extends Component {
+      render() { 
+          return (
+              <div>
+                  <List>
+                      {this.props.data.map((item) => (
+                          <ListItem button>
+                              <ListItemText primary={item.name} align="left" onClick={() => console.log("List" + item.id)}/>
+                              <ListItemIcon>
+                                  <DraftsIcon onClick={() => console.log("Edit" + item.id)} />
+                              </ListItemIcon>
+                              <ListItemIcon>
+                                  <DraftsIcon onClick={() => console.log("Add" + item.id)} />
+                              </ListItemIcon>
+                              <ListItemIcon>
+                                  <DraftsIcon onClick={() => console.log("Save" + item.id)} />
+                              </ListItemIcon>
+                          </ListItem>
+                      ))};
+                     </List>
+              </div>
+          );
+      }
   
-  function SimpleList(props) {
-    const { classes } = props;
-    return (
-      <div>
-        <List>
-          <ListItem button>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Inbox" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <DraftsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Drafts" />
-          </ListItem>
-        </List>
-        <Divider />
-        <List>
-          <ListItem button>
-            <ListItemText primary="Trash" />
-          </ListItem>
-          <ListItem button component="a" href="#simple-list">
-            <ListItemText primary="Spam" />
-          </ListItem>
-        </List>
-      </div>
-    );
-  }
-  
-  SimpleList.propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
-
+}
 export default ViewManager;
