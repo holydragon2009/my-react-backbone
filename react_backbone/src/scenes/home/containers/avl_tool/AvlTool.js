@@ -23,7 +23,7 @@ class AvlTool extends React.Component {
     locationCount: 0
   };
   updateEventCount = count => {
-    const { dispatch, filters } = this.props;
+    const { dispatch, updateFilters } = this.props;
     dispatch(updateToolFilter('eventCount = ' + count, 1));
     this.setState({
       eventCount: count
@@ -76,9 +76,9 @@ class AvlTool extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { filters } = state
+  const { updateFilters } = state
   return {
-    filters
+    updateFilters
   }
 }
 
