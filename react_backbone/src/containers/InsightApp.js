@@ -9,10 +9,10 @@ import {
 } from "antd";
 
 import AutoCompleteBox from "../components/ant/AutoCompleteBox";
-import AvlTool from "../scenes/home/containers/AvlTool";
+import AvlTool from "../scenes/home/containers/avl_tool/AvlTool";
 import MsgTool from "./MsgTool";
 import ResultTab from "./ResultTab";
-import RedditNews from "./RedditNews";
+import RedditNews from "../scenes/home/containers/reddit_news/RedditNews";
 import Divider from "material-ui/Divider";
 
 const { Header, Footer, Sider, Content } = Layout;
