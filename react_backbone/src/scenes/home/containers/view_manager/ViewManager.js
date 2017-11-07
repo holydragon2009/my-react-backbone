@@ -10,12 +10,14 @@ class ViewManager extends Component {
             valueSearch: ''
         };
     }
+
+    
     render() {
         console.log("quanle" + this.state.valueSearch);
         return (
+         
             <div>
-                {/* <ListView></ListView> */}
-
+            
                 <Search
                     placeholder="input search text"
                     style={{ width: 200 }}
@@ -26,5 +28,6 @@ class ViewManager extends Component {
 
     };
 }
+
 
 export default ViewManager;
