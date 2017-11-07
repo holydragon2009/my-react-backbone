@@ -14,6 +14,7 @@ import MsgTool from "./MsgTool";
 import ResultTab from "./ResultTab";
 import RedditNews from "./RedditNews";
 import Divider from "material-ui/Divider";
+import ViewManager from "./ViewManager";
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -39,9 +40,18 @@ class InsightApp extends Component {
               <MsgTool />
             </div>
             <Layout>
-              <div style={styles.avlTool}>
+            <div>
+              <div className="avlTool">
                 <AvlTool />
+              </div >
+              <div className="manager">
+                <fieldset className="fieldset">
+                  <ViewManager ></ViewManager>
+                </fieldset>
+
+
               </div>
+            </div>
               <div style={styles.redditNews}>
                 <RedditNews />
               </div>
