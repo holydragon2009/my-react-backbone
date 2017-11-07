@@ -1,17 +1,10 @@
 import { combineReducers } from "redux";
-import {
-  SELECT_REDDIT,
-  INVALIDATE_REDDIT,
-  REQUEST_POSTS,
-  RECEIVE_POSTS
-} from "../actions";
-
-import {filters} from '../scenes/home/reducers';
+import * as type from '../../redux/actions';
 
 const selectedReddit = (state = "reactjs", action) => {
   // console.log("reducer selectedReddit state = " + JSON.stringify(state) + " - action = " + JSON.stringify(action));
   switch (action.type) {
-    case SELECT_REDDIT:
+    case type.SELECT_REDDIT:
       return action.reddit;
     default:
       return state;
@@ -27,18 +20,18 @@ const posts = (
   action
 ) => {
   switch (action.type) {
-    case INVALIDATE_REDDIT:
+    case type.INVALIDATE_REDDIT:
       return {
         ...state,
         didInvalidate: true
       };
-    case REQUEST_POSTS:
+    case type.REQUEST_POSTS:
       return {
         ...state,
         isFetching: true,
         didInvalidate: false
       };
-    case RECEIVE_POSTS:
+    case type.RECEIVE_POSTS:
       return {
         ...state,
         isFetching: false,
@@ -54,9 +47,9 @@ const posts = (
 const postsByReddit = (state = {}, action) => {
   
   switch (action.type) {
-    case INVALIDATE_REDDIT:
-    case RECEIVE_POSTS:
-    case REQUEST_POSTS:
+    case type.INVALIDATE_REDDIT:
+    case type.RECEIVE_POSTS:
+    case type.REQUEST_POSTS:
     // console.log("reducer postsByReddit state = " + JSON.stringify(state[action.reddit]) + " - action = " + JSON.stringify(action));
       return {
         ...state,
@@ -67,8 +60,7 @@ const postsByReddit = (state = {}, action) => {
   }
 };
 
-const rootReducer = combineReducers({
-  postsByReddit, selectedReddit, filters
-});
-
-export default rootReducer;
+export {
+  postsByReddit,
+  selectedReddit
+};

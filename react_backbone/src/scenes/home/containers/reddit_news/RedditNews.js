@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { selectReddit, fetchPostsIfNeeded, invalidateReddit } from "../actions";
-import Picker from "../components/Picker";
-import Posts from "../components/Posts";
+import { selectReddit, fetchPostsIfNeeded, invalidateReddit } from "../../../../services/reddit_news/actions";
+import Picker from "../../../../components/Picker";
+import Posts from "../../../../components/Posts";
 import {Button} from "antd";
 
 class RedditNews extends Component {
