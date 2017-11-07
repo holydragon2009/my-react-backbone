@@ -14,7 +14,7 @@ import MsgTool from "./MsgTool";
 import ResultTab from "./ResultTab";
 import RedditNews from "../scenes/home/containers/reddit_news/RedditNews";
 import Divider from "material-ui/Divider";
-import ViewManager from "./ViewManager";
+import ViewManager from "../scenes/home/containers/view_manager/ViewManager";
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -48,8 +48,6 @@ class InsightApp extends Component {
                 <fieldset className="fieldset">
                   <ViewManager ></ViewManager>
                 </fieldset>
-
-
               </div>
             </div>
               <div style={styles.redditNews}>
