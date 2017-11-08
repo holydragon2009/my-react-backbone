@@ -1,12 +1,12 @@
 import * as type from '../../redux/actions';
 import { axioFetchPosts } from '../../api/reddit_news_apis'
 
-export const selectReddit = reddit => ({
+export const aSelectReddit = reddit => ({
   type: type.SELECT_REDDIT,
   reddit
 });
 
-export const invalidateReddit = reddit => ({
+export const aInvalidateReddit = reddit => ({
   type: type.INVALIDATE_REDDIT,
   reddit
 });
@@ -53,7 +53,7 @@ const shouldFetchPosts = (state, reddit) => {
   return posts.didInvalidate;
 };
 
-export const fetchPostsIfNeeded = reddit => (dispatch, getState) => {
+export const aFetchPostsIfNeeded = reddit => (dispatch, getState) => {
   if (shouldFetchPosts(getState(), reddit)) {
     return dispatch(fetchPosts(reddit));
   }

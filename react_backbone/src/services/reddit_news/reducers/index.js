@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import * as type from '../../redux/actions';
 
-const selectedReddit = (state = "reactjs", action) => {
+const rSelectedReddit = (state = "reactjs", action) => {
   // console.log("reducer selectedReddit state = " + JSON.stringify(state) + " - action = " + JSON.stringify(action));
   switch (action.type) {
     case type.SELECT_REDDIT:
@@ -62,5 +62,5 @@ const postsByReddit = (state = {}, action) => {
 
 export {
   postsByReddit,
-  selectedReddit
+  rSelectedReddit,
 };
