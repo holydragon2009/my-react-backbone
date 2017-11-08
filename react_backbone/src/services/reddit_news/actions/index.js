@@ -1,4 +1,5 @@
 import * as type from '../../redux/actions';
+import { axioFetchPosts } from '../../api/reddit_news_apis'
 
 export const selectReddit = reddit => ({
   type: type.SELECT_REDDIT,
@@ -22,11 +23,23 @@ export const receivePosts = (reddit, json) => ({
   receivedAt: Date.now()
 });
 
-const fetchPosts = reddit => (dispatch) => {
+// const fetchPosts = reddit => (dispatch) => {
+//   dispatch(requestPosts(reddit));
+//   return fetch(`https://www.reddit.com/r/${reddit}.json`)
+//     .then(response => response.json())
+//     .then(json => {
+//       console.log('fetch res = ' + JSON.stringify(json))
+//       dispatch(receivePosts(reddit, json))
+//     });
+// };
+
+export const fetchPosts = (reddit) => (dispatch) => {
   dispatch(requestPosts(reddit));
-  return fetch(`https://www.reddit.com/r/${reddit}.json`)
-    .then(response => response.json())
-    .then(json => dispatch(receivePosts(reddit, json)));
+  return axioFetchPosts(reddit).then(response => {
+    dispatch(receivePosts(reddit, response))
+  }).catch(error => {
+    console.log('error ' + JSON.stringify(error));
+  });;
 };
 
 const shouldFetchPosts = (state, reddit) => {
