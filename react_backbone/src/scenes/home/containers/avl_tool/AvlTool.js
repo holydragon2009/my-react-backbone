@@ -6,7 +6,7 @@ import VehicleFilter from "../../../../components/ant/VehicleFilter";
 import UnitFilter from "../../../../components/ant/UnitFilter";
 import LocationFilter from "../../../../components/ant/LocationFilter";
 import { connect } from "react-redux";
-import { updateToolFilter } from "../../../../services/avl_tool/actions";
+import { aUpdateToolFilter, aSearchToolFilter } from "../../../../services/avl_tool/actions";
 
 const Panel = Collapse.Panel;
 
@@ -24,7 +24,7 @@ class AvlTool extends React.Component {
   };
   updateEventCount = count => {
     const { dispatch, updateFilters } = this.props;
-    dispatch(updateToolFilter('eventCount = ' + count, 1));
+    dispatch(aUpdateToolFilter('eventCount = ' + count, 1));
     this.setState({
       eventCount: count
     });
@@ -76,9 +76,9 @@ class AvlTool extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { updateFilters } = state
+  const { rUpdateFilters } = state
   return {
-    updateFilters
+    rUpdateFilters
   }
 }
 

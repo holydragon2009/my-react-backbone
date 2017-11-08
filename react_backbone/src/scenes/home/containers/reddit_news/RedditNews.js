@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { selectReddit, fetchPostsIfNeeded, invalidateReddit } from "../../../../services/reddit_news/actions";
+import { aSelectReddit, aFetchPostsIfNeeded, aInvalidateReddit } from "../../../../services/reddit_news/actions";
 import Picker from "../../../../components/Picker";
 import Posts from "../../../../components/Posts";
 import {Button} from "antd";
@@ -16,34 +16,33 @@ class RedditNews extends Component {
   };
 
   componentDidMount() {
-    const { dispatch, selectedReddit } = this.props;
-    dispatch(fetchPostsIfNeeded(selectedReddit));
+    const { dispatch, rSelectedReddit } = this.props;
+    dispatch(aFetchPostsIfNeeded(rSelectedReddit));
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedReddit !== this.props.selectedReddit) {
       const { dispatch, selectedReddit } = nextProps;
-      dispatch(fetchPostsIfNeeded(selectedReddit));
+      dispatch(aFetchPostsIfNeeded(selectedReddit));
     }
   }
 
   handleChange = nextReddit => {
-    this.props.dispatch(selectReddit(nextReddit));
+    this.props.dispatch(aSelectReddit(nextReddit));
   };
 
   handleRefreshClick = e => {
     e.preventDefault();
-
     const { dispatch, selectedReddit } = this.props;
-    dispatch(invalidateReddit(selectedReddit));
-    dispatch(fetchPostsIfNeeded(selectedReddit));
+    dispatch(aInvalidateReddit(selectedReddit));
+    dispatch(aFetchPostsIfNeeded(selectedReddit));
   };
 
   render() {
-    const { selectedReddit, posts, isFetching, lastUpdated } = this.props;
+    const { rSelectedReddit, posts, isFetching, lastUpdated } = this.props;
     const isEmpty = posts.length === 0;
     return <div>
-        <Picker value={selectedReddit} onChange={this.handleChange} options={["reactjs", "frontend"]} />
+      <Picker value={rSelectedReddit} onChange={this.handleChange} options={["reactjs", "frontend"]} />
         <p style={{ marginBottom: 10 }}>
           {lastUpdated && <span>
               Last updated at {new Date(lastUpdated).toLocaleTimeString()}.{" "}
@@ -64,16 +63,16 @@ class RedditNews extends Component {
 }
 
 const mapStateToProps = state => {
-  const { selectedReddit, postsByReddit } = state;
+  const { rSelectedReddit, postsByReddit } = state;
   const { isFetching, lastUpdated, items: posts } = postsByReddit[
-    selectedReddit
+    rSelectedReddit
   ] || {
     isFetching: true,
     items: []
   };
 
   return {
-    selectedReddit,
+    rSelectedReddit,
     posts,
     isFetching,
     lastUpdated
