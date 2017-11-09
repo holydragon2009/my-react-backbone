@@ -13,6 +13,7 @@ import AvlTool from "../scenes/home/containers/avl_tool/AvlTool";
 import MsgTool from "./MsgTool";
 import ResultTab from "./ResultTab";
 import RedditNews from "../scenes/home/containers/reddit_news/RedditNews";
+import Login from"../scenes/user/containers/login/Login"
 import Divider from "material-ui/Divider";
 import ViewManager from "../scenes/home/containers/view_manager/ViewManager";
 
@@ -24,6 +25,7 @@ class InsightApp extends Component {
         <Layout>
           <Affix>
             <Header>
+        
               <div className="nav__top nav__padding center">
                 <Icon type="windows" style={{ fontSize: 16, color: "#08c" }} />
                 <span style={{ fontSize: 16, color: "#08c" }}>
@@ -46,7 +48,7 @@ class InsightApp extends Component {
               </div >
               <div className="manager">
                 <fieldset className="fieldset">
-                  <ViewManager ></ViewManager>
+                  <ViewManager />
                 </fieldset>
               </div>
             </div>

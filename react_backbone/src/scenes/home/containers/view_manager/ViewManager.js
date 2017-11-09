@@ -1,17 +1,18 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 import { Collapse } from "antd";
 import { Input } from 'antd';
-
-import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import InboxIcon from 'material-ui-icons/Inbox';
 import DraftsIcon from 'material-ui-icons/Drafts';
 import Avatar from 'material-ui/Avatar';
-
+import { createEmptyView, faCreateEmptyViewManager} from "../../../../services/view_manager/actions";
 const Search = Input.Search;
 class ViewManager extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -32,12 +33,17 @@ class ViewManager extends Component {
             valueSearch: ''
         };
     }
+
     _handleClickItem =id=> {
-        console.log("List  id = " + id)
+        const { dispatch } = this.props;
+        dispatch(faCreateEmptyViewManager(1));
+        console.log("Add  rCreateEmptyView = " + this.props.rCreateEmptyView.view + this.props.rCreateEmptyView.isCreate);
+        
     }
 
     _handleClickAdd = id => {
         console.log("Add  id = " + id)
+    //    dispatch(faSelectViewManager(id));
     }
 
     _handleClickSave = id => {
@@ -54,7 +60,6 @@ class ViewManager extends Component {
   
     
     render() {
-        console.log("quanle" + this.state.valueSearch);
         return (
             <div>
                 <Search
@@ -115,4 +120,13 @@ class SimpleList extends Component {
       }
   
 }
-export default ViewManager;
+
+
+const mapStateToProps = state => {
+    const { rCreateEmptyView } = state;
+    return {
+        rCreateEmptyView,
+    };
+};
+
+export default connect(mapStateToProps)(ViewManager);

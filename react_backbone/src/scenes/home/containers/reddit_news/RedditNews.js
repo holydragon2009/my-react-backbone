@@ -16,7 +16,12 @@ class RedditNews extends Component {
   };
 
   componentDidMount() {
+    console.log("RedditNews  dispatch = " + JSON.stringify(this.props))
+    
+
     const { dispatch, rSelectedReddit } = this.props;
+    console.log("RedditNews  dispatch = " + JSON.stringify(dispatch))
+
     dispatch(aFetchPostsIfNeeded(rSelectedReddit));
   }
 
@@ -39,10 +44,11 @@ class RedditNews extends Component {
   };
 
   render() {
-    const { rSelectedReddit, posts, isFetching, lastUpdated } = this.props;
+    const { selectedReddit, posts, isFetching, lastUpdated } = this.props;
     const isEmpty = posts.length === 0;
+    posts.items
     return <div>
-      <Picker value={rSelectedReddit} onChange={this.handleChange} options={["reactjs", "frontend"]} />
+      <Picker value={selectedReddit} onChange={this.handleChange} options={["reactjs", "frontend"]} />
         <p style={{ marginBottom: 10 }}>
           {lastUpdated && <span>
               Last updated at {new Date(lastUpdated).toLocaleTimeString()}.{" "}
@@ -58,7 +64,7 @@ class RedditNews extends Component {
             </h2> : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
             <Posts posts={posts} />
           </div>}
-      </div>;
+        </div>;
   }
 }
 
@@ -72,7 +78,6 @@ const mapStateToProps = state => {
   };
 
   return {
-    rSelectedReddit,
     posts,
     isFetching,
     lastUpdated

@@ -23,8 +23,8 @@ class AvlTool extends React.Component {
     locationCount: 0
   };
   updateEventCount = count => {
-    const { dispatch, updateFilters } = this.props;
-    dispatch(aUpdateToolFilter('eventCount = ' + count, 1));
+    const { dispatch, rUpdateFilters } = this.props;
+    dispatch(aUpdateToolFilter('changedata' + count, 1));
     this.setState({
       eventCount: count
     });
@@ -45,6 +45,7 @@ class AvlTool extends React.Component {
     });
   };
   render() {
+    
     return <Collapse defaultActiveKey={["1"]} onChange={callback} style={{ width: 500 }}>
         <Panel header={this.state.eventCount + " " + (this.state.eventCount > 1 ? "Events" : "Event")} key="1">
           <p>
@@ -67,7 +68,7 @@ class AvlTool extends React.Component {
           </p>
         </Panel>
         <Panel header="Location" key="5">
-          <p>
+        <p>
             <LocationFilter />
           </p>
         </Panel>

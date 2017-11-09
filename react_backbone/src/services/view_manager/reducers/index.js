@@ -1,90 +1,78 @@
 import { combineReducers } from "redux";
 import * as type from '../../redux/actions';
 
-export const editViewName = (state ={
-},action) =>{
-  switch (action.type) {
-    case type.UPDATE_TOOL_FILTER:
-       return {
-         ...state,
-         viewName: action.viewName,
-         isEdit: action.isEdit,
-         viewId: action.viewId,
-        } 
-        default:
-           return state;
-    }
-};
 
-export const deleteView =(state ={},action) =>{
+export const rDeleteView =(state,action) =>{
   switch (action.type) {
       case type.DELETE_VIEW:
         return{
         ...state,
-        listViewManager: state.listViewManager.map(view =>
-            view.viewId === action.viewId
-                ? { ...view, isDelete: true,isResfresh :true }
-                : view
-        )
-    }
+        items: state.items.filter(view => view.id !== view.id)
+    };
        default:
           return state;
   }
-}
+};
 
-export const saveView = (state = {}, action) => {
+export const rEditViewName = (state = {}, action) => {
+    switch (action.type) {
+        case type.EDIT_VIEW_NAME:
+            return {
+                ...state,
+                view: action.view
+            };
+        default:
+            return state;
+    }
+};
+
+
+export const rSaveView = (state , action) => {
     switch (action.type) {
         case type.SAVE_VIEW:
             return {
                 ...state,
-                queryId: action.queryId,
                 isSave: action.isSave,
-                viewId: action.viewId
             }
         default:
             return state;
     }
 }
 
-export const selectView= (state= {},action) => { 
-    switch (type) {
+export const rSelectView= (state= {},action) => { 
+    switch (action.type) {
         case type.SELECT_VIEW:
            return{
             ...state,
-            filterQuery: action.filterQuery,
-            filterGrid: action.filterGrid,
-            isSelect: action.isSelect,
-            viewId: action.viewId
+            isSave: action.isSave,
            }
         default:
             return state
     }
-}
+};
 
-export const createEmptyView = (state = {},action) => {
-    switch (type) {
+export const rCreateEmptyView = (state = {},action) => {
+    switch (action.type) {
         case type.CREATE_EMPTY_VIEW:
             return {
                 ...state,
-                filterQuery: action.filterQuery,
-                filterGrid: action.filterGrid,
+                view: action.view,
                 isCreate: action.isCreate,
-                viewId: action.viewId
             }
         default:
             return state
     }
-}
+};
 
-export const loadViewList= (state = {},action) =>{
-    switch (type) {
+export const rLoadViewList= (state={} ,action) =>{
+    switch (action.type) {
         case type.LOAD_VIEW_LIST:
             return{
              ...state,
-             filter: action.filter,
-             viewId: action.viewId,
+             items: action.items,
+             isLoadList: action.viewId,
             }
         default:
             return state;
     }
-}
+};

@@ -1,56 +1,92 @@
 import * as type from '../../redux/actions';
+import { aUpdateToolFilter } from '../../avl_tool/actions';
+import { axioDeleteViewManger, axioEditViewManger,axioSaveViewManger, axioLoadListViewManger } from '../../api/view_manager';
 
-import { updateToolFilter } from '../../avl_tool/actions';
-
-export const editViewName = (viewName , viewId) =>({
+export const editViewName = view=>({
     type: type.EDIT_VIEW_NAME,
-    viewName: viewName,
-    isEdit:true,
-    viewId: viewId
+    isEdit: true,
+    view: view
     });
+
+
+export const faEditViewName = (viewName,viewId) => (dispatch) => {
+    return axioEditViewManger(viewName,viewId).then(response => {
+        dispatch(editViewName(response.view)) //View object contains view attributes
+    }).catch(error => {
+        console.log('error ' + JSON.stringify(error));
+    });
+};
 
 export const deleteView = (viewId) => ({
     type: type.DELETE_VIEW,
     isDelete: true,
     viewId: viewId,
-    listViewManager:{},
 });
 
-export const faDeleteView = (viewId) => {
-    if(true){
-        dispath(updateToolFilter(null));
-    }
-    // return fetch('ENDPOINT')
-    //     .then(response => response.json())
-    // .then(json => dispath(updateFilter(null)))
-    // .then(dispath(updateGridResult(null)))
+export const faDeleteView = (viewId) => (dispatch) =>{
+    return axioDeleteViewManger(viewId).then(response => {
+        dispatch(deleteView(viewId))
+            (dispatch(aUpdateToolFilter(null)))
+            // .then(dispatch(updateGridResult(null)))
+           
+    }).catch(error => {
+        console.log('error ' + JSON.stringify(error));
+    });
 };
 
-export const saveView = (queryId, viewId) => ({
+export const saveViewManager = (queryId) => ({
     type: type.SAVE_VIEW,
     queryId: queryId,
     isSave: true,
-    viewId: viewId
 });
 
-export const selectView = (filterQuery,filterGrid, viewId) => ({
+export const faSaveViewManager = (queryId) => (dispatch) => {
+    return axioSaveViewManger(queryId).then(response => {
+        dispatch(saveViewManager(queryId))
+    }).catch(error => {
+        console.log('error ' + JSON.stringify(error));
+    });
+};
+
+export const selectView = (viewId) =>  ({
     type: type.SELECT_VIEW,
-    filterQuery: filterQuery,
-    filterGrid: filterGrid,
-    isSelect :isSelect,
+    filterQuery: {},
+    filterGrid: {},
+    isSelect :true,
     viewId: viewId
 });
 
-export const createEmptyView = (filterQuery, filterGrid, viewId) => ({
+export const faSelectViewManager = (viewId) => (dispatch) => {
+    dispatch(selectView(viewId))
+    dispatch(aUpdateToolFilter(null))
+    //dispatch(updateGridResult(null))
+};
+
+export const createEmptyView = (view) => ({
     type: type.CREATE_EMPTY_VIEW,
-    filterQuery: filterQuery,
-    filterGrid: filterGrid,
     isCreate: true,
-    viewId: viewId
+    view: view
 });
 
-export const loadViewList = (filter, viewId) => ({
+export const faCreateEmptyViewManager = view => (dispatch) => {
+    dispatch(createEmptyView(view))
+    dispatch(aUpdateToolFilter('changeData', 1));
+    //dispatch(updateGridResult(null))
+};
+
+
+
+
+export const loadViewList = (items) => ({
     type: type.LOAD_VIEW_LIST,
-    filter: filter,
-    viewId: viewId
+    isLoadList: true,
+    items :items
 });
+
+export const faLoadViewManager = (queryId) => (dispatch) => {
+    return axioLoadListViewManger(queryId).then(items => {
+        dispatch(loadViewList(items))
+    }).catch(error => {
+        console.log('error ' + JSON.stringify(error));
+    });
+};

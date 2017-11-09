@@ -1,0 +1,1 @@
+import * as type from '../../redux/actions';

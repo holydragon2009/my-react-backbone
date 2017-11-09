@@ -39,7 +39,8 @@ export const fetchPosts = (reddit) => (dispatch) => {
     dispatch(receivePosts(reddit, response))
   }).catch(error => {
     console.log('error ' + JSON.stringify(error));
-  });;
+  });
+
 };
 
 const shouldFetchPosts = (state, reddit) => {
