@@ -65,7 +65,8 @@ const filterData = {
   }
 }
 
-export const updateFilters = (state = {
+
+export const rUpdateFilters = (state = {
     filter: filterData,
     isChanged: false,
     viewId: 0
@@ -81,4 +82,6 @@ export const updateFilters = (state = {
     default:
       return state;
   }
+
+
 }

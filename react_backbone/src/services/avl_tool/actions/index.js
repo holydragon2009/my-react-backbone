@@ -1,13 +1,14 @@
 import * as type from '../../redux/actions';
 
-export const updateToolFilter = (filter, viewId) => ({
+
+ export const aUpdateToolFilter = (filter, viewId) => ({
   type: type.UPDATE_TOOL_FILTER,
   filter: filter,
   isChanged: true,
   viewId: viewId
 });
 
-export const searchToolFilter = (filter, viewId) => ({
+ export const aSearchToolFilter = (filter, viewId) => ({
   type: type.SEARCH_TOOL_FILTER,
   filter: filter,
   viewId: viewId

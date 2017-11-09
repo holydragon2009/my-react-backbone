@@ -46,6 +46,11 @@ class ViewManager extends Component {
     _handleClickDelete = id => {
         console.log("Delete  id = " + id)
     }
+
+    _handleSearch = value =>{
+        this.setState({ valueSearch: value })
+        console.log("Search  id = " + this.state.valueSearch)
+     }
   
     
     render() {
@@ -55,7 +60,7 @@ class ViewManager extends Component {
                 <Search
                     placeholder="input search text"
                     style={{ width: 300 }}
-                    onSearch={value => this.setState({ valueSearch: value })}
+                    onSearch={this._handleSearch}
                 />
                 <SimpleList data={this.state.listData} handleCLick={this._handleClickItem} 
                 handleClickAdd={this._handleClickAdd}
